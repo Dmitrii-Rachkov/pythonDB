@@ -1,5 +1,8 @@
 import psycopg2
 
+# Конструкция для автозаполнения кода
+import psycopg2.extras
+
 # Для получения данных применяется SQL-команда SELECT.
 # После выполнения этой команды курсор получает данные, которые можно получить
 # с помощью одного из методов:
@@ -9,7 +12,9 @@ import psycopg2
 
 conn = psycopg2.connect(dbname="metanit", user="postgres", password="12PostgreSQL05",
                         host="localhost", port="5432")
-cursor = conn.cursor()
+
+# Чтобы включить автозаполнение кода нужна следующая конструкция:
+cursor = conn.cursor()  # type: psycopg2.extras.DictCursor
 
 # Например, получим все ранее добавленные данные из таблицы people:
 cursor.execute("SELECT * FROM people")

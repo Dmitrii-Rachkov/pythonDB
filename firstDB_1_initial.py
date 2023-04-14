@@ -1,5 +1,8 @@
 # Импортируем библиотеку для работы с базлй данных
 import psycopg2
+# Конструкция для автозаполнения кода
+import psycopg2.extras
+
 
 # Подключаемся к базе данных
 conn = psycopg2.connect(dbname="testDB", host="localhost", user="postgres",
@@ -41,7 +44,8 @@ conn.close()
 # но для подтверждения их выполнения необходимо вызывать метод commit() объекта connection.
 # Условно это может выглядеть так:
 
-cursor = conn.cursor()
+# Чтобы включить автозаполнение кода нужна следующая конструкция:
+cursor = conn.cursor()   # type: psycopg2.extras.DictCursor
 cursor.execute(sql1)
 conn.commit()
 cursor.close()

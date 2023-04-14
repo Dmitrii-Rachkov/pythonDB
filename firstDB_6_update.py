@@ -1,9 +1,14 @@
 import psycopg2
 
+# Конструкция для автозаполнения кода
+import psycopg2.extras
+
 
 conn = psycopg2.connect(dbname="metanit", user="postgres", password="12PostgreSQL05",
                         host="localhost", port="5432")
-cursor = conn.cursor()
+
+# Чтобы включить автозаполнение кода нужна следующая конструкция:
+cursor = conn.cursor()  # type: psycopg2.extras.DictCursor
 
 # Для обновления в SQL выполняется команда UPDATE.
 # Например, заменим у всех пользователей имя с Tom на Tomas:

@@ -1,10 +1,11 @@
 import psycopg2
-
-import psycopg2.extras  # Конструкция для автозаполнения кода
+# Конструкция для автозаполнения кода
+import psycopg2.extras
 
 
 conn = psycopg2.connect(dbname="metanit", user="postgres", password="12PostgreSQL05",
                         host="localhost", port="5432")
+
 # Чтобы включить автозаполнение кода нужна следующая конструкция:
 cursor = conn.cursor()  # type: psycopg2.extras.DictCursor
 
@@ -15,7 +16,6 @@ cursor.executemany("INSERT INTO people (name, age) VALUES (%s, %s)", people)
 # выполняем транзакцию
 conn.commit()
 print("Data added")
-
 cursor.close()
 conn.close()
 

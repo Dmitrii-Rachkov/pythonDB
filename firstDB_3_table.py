@@ -2,11 +2,16 @@
 
 import psycopg2
 
+# Конструкция для автозаполнения кода
+import psycopg2.extras
+
 # Для создания таблицы в PostgreSQL применяется инструкция CREATE TABLE.
 # Например, в вышесозданной базе данных "metanit" создадим таблицу people:
 
 conn = psycopg2.connect(dbname="metanit", user="postgres", password="12PostgreSQL05", host="localhost")
-cursor = conn.cursor()
+
+# Чтобы включить автозаполнение кода нужна следующая конструкция:
+cursor = conn.cursor()  # type: psycopg2.extras.DictCursor
 
 # создаем таблицу people
 cursor.execute("CREATE TABLE people (id SERIAL PRIMARY KEY, name VARCHAR(50),  age INTEGER)")
